@@ -7,7 +7,7 @@ Set of tools for GALION Network (https://galion.world/) for metadata automation 
 The World Meteorological Organization (WMO) Global Atmospheric Watch (GAW) Aerosol Lidar Observation Network (GALION) was formed in 2008. GALION is a lidar network of networks organized through the GAW program to coordinate network activities and provide comprehensive profiling of atmospheric aerosols, clouds, gases, and thermodynamic structure (from https://galion.world/).
 
 
-In order to homogenize the data, GALION Network uses JSON data files to report their measurements. The JSON files contain metadata reporting generar information about the site, persons in charge.
+In order to homogenize the data, GALION Network uses JSON data files to report their measurements. The JSON files contain metadata reporting general information about the site, its status and the persons in charge. Also, 
 
 The script ***galion_auto_json_generator.py*** is a command line tool to fill the variable ***available*** inside the *json* file based on the saved LICEL lidar files.
 
