@@ -74,7 +74,7 @@ This JSON template file must already contain general information data about the 
 
 ### Second Argument: Licel data file folder
 
-The second argument of this Python script must be the folder where the lidar files are located. The folder must contain **only the lidar files**. Any other file type will produce a script malfunction.
+The second argument of this Python script must be the folder where the lidar files are located. The folder must contain **the lidar files in LICEL data file format**. The subfolders and other data files with extensions without numbers are discarded.
 Another important feature is that their filenames must follow the Licel filenames conventions (more info at https://licel.com/raw_data_format.html). The rules for the filename are as follows:
 
 `xYYMDDhh.mmssuu`
