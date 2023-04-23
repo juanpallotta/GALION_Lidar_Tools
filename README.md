@@ -8,23 +8,23 @@ Set of tools for GALION Network (https://galion.world/) for metadata automation 
 The World Meteorological Organization (WMO) Global Atmospheric Watch (GAW) Aerosol Lidar Observation Network (GALION) was formed in 2008. GALION is a lidar network of networks organized through the GAW program to coordinate network activities and provide comprehensive profiling of atmospheric aerosols, clouds, gases, and thermodynamic structures (from https://galion.world/).
 
 
-To homogenize the data, GALION Network uses JSON data files to report their measurements. This file contains metadata reporting general information about the site, its instrumentation and operational status, persons in charge, and the atmospheric variables output for the site.
+GALION Network uses JSON data files to report data from the different networks in a homogenized way. This file contains metadata reporting general information about the site, its instrumentation and operational status, persons in charge, and the atmospheric variables output for the site.
 
-For these outputs, boolean-hourly data is filled up in the JSON files reporting if there is data available or not. Also, the hourly status of the measurement must be reported as: ***preliminary***, ***operational*** or **na**.
-
-Since filling daily JSON files with hourly data is a time-consuming task to accomplish every day, this script was developed to solve this work automatically. Using tree input parameters: a JSON template, the path to the acquired lidar data and the output path to save the JSON files, this script can perform
+For these outputs, boolean-hourly data is filled up in the JSON files reporting if there is data available or not. Also, the hourly status of the measurement must be reported as: ***preliminary***, ***operational*** or **na**. Since filling daily JSON files with hourly data is a time-consuming task to accomplish, this script was developed to solve this work automatically. Using tree input parameters: a JSON template, the path to the acquired lidar data and the output path to save the JSON files, this script performs:
 * Creates a new JSON based on the template JSON file passed as the first argument.
-* Fills the fields related to the data availability for each hour of the day. Also, set the right date inside the new JSON file.
+* Fills the fields related to the data availability for each hour of the day based on the lidar files acquired. Also, set the right date inside the new JSON file.
 * Save the output JSON file in the path passed as the third argument.
+
+This script can be run in a command line producing a single JSON file, or inside a script with passes the right input folder for .
 
 The automatic run of this script has to be performed using another script, running this code and passing the arguments correctly. Ie, it can be done with a Linux script or Python executed through a cronjob (in case of using Linux OS).
 
 
 ## Installation
-This Python code only needs three libraries to run: ***os***, ***sys*** and ***json***. All can be installed in a single command line using *pip*:
+This Python code only needs three libraries to run: ***os***, ***sys***, ***re*** and ***json***. All can be installed in a single command line using *pip*:
 
 ```
-pip install os sys json
+pip install os sys json re
 ```
 
 Once this is done, you are ready to run ***galion_auto_json_generator.py***. Have in mind that the lidar files have to be run on the same PC where the lidar files are stored.

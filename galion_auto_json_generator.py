@@ -1,17 +1,21 @@
 
-# clear ; python3 galion_auto_json_generator.py /home/juan/MEGAsync/procesamiento/GALION-OSCAR_Code/GALION.code/GALION_LALINET_CEILAPOZONE_TEMPLATE.json /home/juan/MEGAsync/procesamiento/GALION-OSCAR_Code/licel_files/ /home/juan/MEGAsync/procesamiento/GALION-OSCAR_Code/GALION.code/JSON_OUT/
-# clear ; python3 galion_auto_json_generator.py /home/juan/MEGAsync/procesamiento/GALION-OSCAR_Code/GALION.code/GALION_NDACC_MLO_TEMPLATE.json /home/juan/MEGAsync/procesamiento/GALION-OSCAR_Code/licel_files/ /home/juan/MEGAsync/procesamiento/GALION-OSCAR_Code/GALION.code/JSON_OUT/
+# clear ; python3 galion_auto_json_generator.py GALION_LALINET_CEILAPOZONE_TEMPLATE.json ../licel_files/ ./JSON_OUT/
+# clear ; python3 galion_auto_json_generator.py GALION_NDACC_MLO_TEMPLATE.json ../licel_files/ ./JSON_OUT/
 
 import json
 import sys
 import os
+import re
 
 if len(sys.argv) == 4:
 
     if ( os.path.isfile( sys.argv[1]) ) and ( os.path.isdir( sys.argv[2]) ):
 
-        # READ THE FOLDER CONTAINING THE LIDAR DATA (LICEL FILES) -----------------------------------------------------------------------------------------------------------
-        file_list = os.listdir(sys.argv[2])
+        # READ THE FILES INSIDE THE FOLDER CONTAINING THE LIDAR DATA, SKIP THE FOLDERS -------------------
+        file_list = [ f for f in os.listdir(sys.argv[2]) if os.path.isfile(os.path.join(sys.argv[2], f)) ] 
+
+        # FILTER THE FILES THAT NOT CONTAINS NUMBERS IN THE EXTENSION ------------------------------------
+        file_list = [ f for f in file_list if re.search(r'\d+', os.path.splitext(f)[1] ) ]
 
         # DEFINE AN BOOLEAN ARRAY WITH THE AVAILABLE DATA (ALL FALSE BY DEFAULT)
         hours_with_Data = [False for i in range(24)]
@@ -28,7 +32,7 @@ if len(sys.argv) == 4:
         data['date'] = f"{2000+int(file_list[0][1:3])}-{int(file_list[0][3:4], 16):02d}-{int(file_list[0][4:6]):02d}" 
 
         # UPDATE "true" OR "false" IN "available" VARIABLE BASED ON WHAT WAS READ IN THE INPUT FOLDER (ARGUMENT NUMBER 2)
-        print( f"len(data['data']): {len(data['data']): }" )
+        # print( f"len(data['data']): {len(data['data']): }" )
         for d in range( len(data['data']) ):
             data['data'][d]['available'][:] = hours_with_Data
             # data['data'][d]['status'][:] = 
