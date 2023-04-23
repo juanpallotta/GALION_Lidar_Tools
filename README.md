@@ -90,8 +90,10 @@ Where:
 * `ss`: Seconds (two digits).
 * `uu`: miliseconds (two digits).
 
-By reading the filename of the acquired files, we can know if there is data available at certain hour (`available` variable of the JSON file). The status of this data has to be defined by the lidar operator, filling the state in the `status` variable of the template file passed as firts argument. This could be: `operational`, `preliminary` or `na`.
+By reading the filename of the acquired files, we can know if there is data available at a certain hour (`available` variable of the JSON file). The status of this data has to be defined by the lidar operator, filling the state in the `status` variable of the template file passed as the first argument. This could be: `operational`, `preliminary` or `na`.
 
 
 ### Third Argument: Output JSON file folder
+
+Path of the folder where the JSON files will be stored.
 
