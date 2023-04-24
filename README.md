@@ -96,4 +96,3 @@ By reading the filename of the acquired files, we can know if there is data avai
 ### Third Argument: Output JSON file folder
 
 Path of the folder where the JSON files will be stored.
-
