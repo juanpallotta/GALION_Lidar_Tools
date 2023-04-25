@@ -1,5 +1,5 @@
 
-# clear ; python3 galion_auto_json_generator.py GALION_LALINET_CEILAPOZONE_TEMPLATE.json ../licel_files/ ./JSON_OUT/
+# clear ; python3 galion_auto_json_generator.py GALION_LALINET_CEILAPOZONE_TEMPLATE.json ../licel_files/20150425/ ./JSON_OUT/
 # clear ; python3 galion_auto_json_generator.py GALION_NDACC_MLO_TEMPLATE.json ../licel_files/ ./JSON_OUT/
 
 import json
@@ -40,6 +40,8 @@ if len(sys.argv) == 4:
         # WRITE THE OUTPUT JSON FILE -----------------------------------------------------------------------------------------------------------
         output_json_file = f"{sys.argv[3]}{os.path.basename(sys.argv[1])}"
         file_name_date = f"{2000+int(file_list[0][1:3])}{int(file_list[0][3:4], 16):02d}{int(file_list[0][4:6]):02d}"
+
+# replace in a string the part between two strings
 
         output_json_file = output_json_file.replace("TEMPLATE", file_name_date)
         with open( output_json_file, "w") as file:
