@@ -51,25 +51,28 @@ This template file is a regular GALION JSON file used for two main tasks:
 * To create the output JSON filename.
 * To load the general metadata fields related to the site status, contact persons, etc.
 
-The JSON filename has to follow certain rules, and there are:
+Since the JSON filename has to follow certain rules, the template file used here follows almost the same structure, and is as it follows:
 
-`GALION_NET_SITENAME_TEMPLATE.json`
+`GALION_NET_SITENAME_TEMPLATE_free_key_word.json`
 
 Where:
 - `GALION`: All JSON filenames for the GALION network must start with the word *GALION*.
-- `NET`: Is the network name as is named inside the GALION Network (ie: *LALINET*).
-- `SITENAME`: Is the name of the site as is named inside the GALION Network (ie: *OZONECEILAP*).
-- `TEMPLATE`: Key word.
+- `NET`: Is the network name as is named inside the GALION Network (ie: **LALINET**).
+- `SITENAME`: Name of the site as is named inside the GALION Network (ie: *OZONECEILAP*).
+- `TEMPLATE`: Key-word, it is mandatory the use of CAPITALS.
+- `free_key_word`: A free word used to describe the template. This is useful in case of using differents site or data status, one can define differents templates without change the same for the run.
 
-And the output JSON filename automatically generated will be: `GALION_NET_SITENAME_YYYYMMDD.json`
+The output JSON filename automatically generated will be created following the GALION rules as:
 
-where `YYYYMMDD` is:
+`GALION_NET_SITENAME_YYYYMMDD.json`
+
+It can be seen that the string `TEMPLATE_free_key_word` was replaced for the date in the format year-month-day (`YYYYMMDD`), where:
 
 - `YYYY`: Year of the measurement (4 digits)
 - `MM`: Month of the measurement (two digits).
 - `DD`: Day of the measurement (two digits).
 
-This JSON template file must already contain general information data about the site status, contact persons, and variable output, which are going to be copied to the output file. If some of these data have to be changed, by just changing the template file it will be mirrored in the output file.
+This JSON template file must already contain general information data about the site status, contact persons, and variable output, which are going to be copied to the output file. If some of these data have to be changed, just change the template file and it will be mirrored in the output file.
 
 
 ### Second Argument: Licel data file folder
