@@ -36,8 +36,7 @@ The script ***galion_auto_json_generator.py*** is a command line tool devoted to
 The script has to be launched as:
 
 ```
-python3 galion_auto_json_generator.py GALION_NET_SITENAME_TEMPLATE.json folder_path_to_lidar_files path_to_output_folder
-
+python3 galion_auto_json_generator.py GALION_NET_SITENAME_TEMPLATE_free_key_word.json folder_path_to_lidar_files path_to_output_folder
 ```
 
 Each of these arguments is explained in the following sub-sections.
@@ -59,10 +58,10 @@ Where:
 - `GALION`: All JSON filenames for the GALION network must start with the word *GALION*.
 - `NET`: Is the network name as is named inside the GALION Network (ie: **LALINET**).
 - `SITENAME`: Name of the site as is named inside the GALION Network (ie: *OZONECEILAP*).
-- `TEMPLATE`: Key-word, it is mandatory the use of CAPITALS.
-- `free_key_word`: A free word used to describe the template. This is useful in case of using differents site or data status, one can define differents templates without change the same for the run.
+- `TEMPLATE`: Key-word, it is mandatory the use CAPITALS.
+- `free_key_word`: A free word used to describe the template. This is useful in case of using different sites or data status, one can define different templates without changing the name for the run.
 
-The output JSON filename automatically generated will be created following the GALION rules as:
+The output JSON filename automatically generated will be created following the GALION rules:
 
 `GALION_NET_SITENAME_YYYYMMDD.json`
 
@@ -99,3 +98,24 @@ By reading the filename of the acquired files, we can know if there is data avai
 ### Third Argument: Output JSON file folder
 
 Path of the folder where the JSON files will be stored.
+
+## Bulk Mode
+
+If it's necessary the generation of many JSON files in a row, this repository contains a Linux script for this task. Its name is `bulk_galion_auto_json_generator.sh`. In this script, instead of passing as a second argument the folder where the lidar files are stored (`folder_path_to_lidar_files`), we need to specify the ***mother*** folder where the subfolder with the lidar files is located. The directory structure must follow:
+
+```
+/data/|
+      |->...
+      |->/20230102/
+      |->/20230103/
+      |->/20230104/
+      |->/20230105/
+      |->...
+```
+
+
+
+```
+./galion_auto_json_generator.py GALION_NET_SITENAME_TEMPLATE_free_key_word.json main_path_to_lidar_data path_to_output_folder
+```
+

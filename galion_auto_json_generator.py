@@ -1,6 +1,7 @@
 
 # clear ; python3 galion_auto_json_generator.py GALION_LALINET_CEILAPOZONE_TEMPLATE_OPERATIONAL.json ../licel_files/20150425/ ./JSON_OUT/
-# clear ; python3 galion_auto_json_generator.py GALION_NDACC_MLO_TEMPLATE.json ../licel_files/ ./JSON_OUT/
+
+# clear ; python3 galion_auto_json_generator.py GALION_LALINET_CEILAPOZONE_TEMPLATE_OPERATIONAL.json /mnt/Disk-1_8TB/Argentina/test/20190906/ ./JSON_OUT/
 
 import json
 import sys
