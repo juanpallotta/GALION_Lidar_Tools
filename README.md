@@ -15,8 +15,6 @@ For these outputs, boolean-hourly data is filled up in the JSON files reporting 
 * Fills the fields related to the data availability for each hour of the day based on the lidar files acquired. Also, set the right date inside the new JSON file.
 * Save the output JSON file in the path passed as the third argument.
 
-This script can be run in a command line producing a single JSON file, or inside a script with passes the right input folder for .
-
 The automatic run of this script has to be performed using another script, running this code and passing the arguments correctly. Ie, it can be done with a Linux script or Python executed through a cronjob (in case of using Linux OS).
 
 
@@ -59,7 +57,7 @@ Where:
 - `NET`: Is the network name as is named inside the GALION Network (ie: **LALINET**).
 - `SITENAME`: Name of the site as is named inside the GALION Network (ie: *OZONECEILAP*).
 - `TEMPLATE`: Key-word, it is mandatory the use CAPITALS.
-- `free_key_word`: A free word used to describe the template. This is useful in case of using different sites or data status, one can define different templates without changing the name for the run.
+- `free_key_word`: A free word used to describe the template. This is useful in case of using different sites or data statuses, so one can define different templates for different cases.
 
 The output JSON filename automatically generated will be created following the GALION rules:
 
@@ -76,7 +74,7 @@ This JSON template file must already contain general information data about the 
 
 ### Second Argument: Licel data file folder
 
-The second argument of this Python script must be the folder where the lidar files are located. The folder must contain **the lidar files in LICEL data file format**. The subfolders and other data files with extensions without numbers are discarded.
+The second argument of this Python script must be the folder where the lidar files are located. The folder must contain **the lidar files with LICEL filename format**. The subfolders and other data files with extensions without numbers are discarded.
 Another important feature is that their filenames must follow the Licel filenames conventions (more info at https://licel.com/raw_data_format.html). The rules for the filename are as follows:
 
 `xYYMDDhh.mmssuu`
@@ -99,6 +97,12 @@ By reading the filename of the acquired files, we can know if there is data avai
 
 Path of the folder where the JSON files will be stored.
 
+## Automatic rules applied for the JSON file generation
+About `data` object array: each of the values of the arrays `available` and `status` will be filled according to:
+
+* `available`: If the status of the site is `operational`, each hour field will be filled with the value of `true` if only a single file was acquired within the hour. Otherwise, it will be filled with `false`.
+* `status`: If the status of the site is `operational`, its values will also be filled with the string `operational`. If the status of the site is `closed`, their values will be `na`.
+
 ## Bulk Mode
 
 If it's necessary the generation of many JSON files in a row, this repository contains a Linux script for this task. Its name is `bulk_galion_auto_json_generator.sh`. In this script, instead of passing as a second argument the folder where the lidar files are stored (`folder_path_to_lidar_files`), we need to specify the ***mother*** folder where the subfolder with the lidar files is located. The directory structure must follow:
@@ -113,9 +117,10 @@ If it's necessary the generation of many JSON files in a row, this repository co
       |->...
 ```
 
-
+The task of this script is to produce a list of paths where the lidar files are located and pass them to the Python script ```galion_auto_json_generator.sh```.
+The usage is:
 
 ```
-./galion_auto_json_generator.py GALION_NET_SITENAME_TEMPLATE_free_key_word.json main_path_to_lidar_data path_to_output_folder
+./bulk_galion_auto_json_generator.py GALION_NET_SITENAME_TEMPLATE_free_key_word.json main_path_to_lidar_data path_to_output_folder
 ```
 
