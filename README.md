@@ -42,7 +42,7 @@ Each of these arguments is explained in the following sub-sections.
 
 ### First Argument: Template file
 
-Due to this script being devoted to filling the hourly-boolean variable ***available*** and ***date*** fields inside the JSON file, all the rest of the metadata has to be loaded from another source. This is accomplished using a JSON template file, passed as a first argument.
+Due to this script being devoted to filling the hourly-boolean variable ***available*** and ***date*** fields inside the JSON file, all the rest of the metadata has to be loaded from another source. This is accomplished using a GALION-JSON template file, passed as a first argument.
 
 This template file is a regular GALION JSON file used for two main tasks:
 * To create the output JSON filename.
@@ -50,14 +50,14 @@ This template file is a regular GALION JSON file used for two main tasks:
 
 Since the JSON filename has to follow certain rules, the template file used here follows almost the same structure, and is as it follows:
 
-`GALION_NET_SITENAME_TEMPLATE_free_key_word.json`
+`GALION_NETWORK_SITENAME_TEMPLATE_free_key_word.json`
 
 Where:
 - `GALION`: All JSON filenames for the GALION network must start with the word *GALION*.
-- `NET`: Is the network name as is named inside the GALION Network (ie: **LALINET**).
+- `NETWORK`: Is the network name as is named inside the GALION Network (ie: **LALINET**).
 - `SITENAME`: Name of the site as is named inside the GALION Network (ie: *OZONECEILAP*).
-- `TEMPLATE`: Key-word, it is mandatory the use CAPITALS.
-- `free_key_word`: A free word used to describe the template. This is useful in case of using different sites or data statuses, so one can define different templates for different cases.
+- `TEMPLATE`: Key-word, it is mandatory the use CAPITALS letters.
+- `free_key_word`: A free word used to describe the template. This is useful in the case of using different sites or data statuses, so one can define different templates for different cases.
 
 The output JSON filename automatically generated will be created following the GALION rules:
 
@@ -74,7 +74,7 @@ This JSON template file must already contain general information data about the 
 
 ### Second Argument: Licel data file folder
 
-The second argument of this Python script must be the folder where the lidar files are located. The folder must contain **the lidar files with LICEL filename format**. The subfolders and other data files with extensions without numbers are discarded.
+The second argument of this Python script must be the folder where the lidar files are located. The folder must contain **the lidar files in LICEL filename format**. The subfolders and other data files with extensions without numbers are discarded (since Licel files are extensionless and after the dot are just numbers).
 Another important feature is that their filenames must follow the Licel filenames conventions (more info at https://licel.com/raw_data_format.html). The rules for the filename are as follows:
 
 `xYYMDDhh.mmssuu`
@@ -85,12 +85,12 @@ Where:
 * `YY`: Year (two digits). This script interprets this number as the number of years after the year 2000.
 * `M`: Month (one digit) **in hexadecimal base***.
 * `DD`: Day (two digits).
-* `hh`: Hours (two digits).
+* `hh`: Hours (two digits). After these two digits, there is the dot.
 * `mm`: Minutes (two digits).
 * `ss`: Seconds (two digits).
 * `uu`: miliseconds (two digits).
 
-By reading the filename of the acquired files, we can know if there is data available at a certain hour (`available` variable of the JSON file). The status of this data has to be defined by the lidar operator, filling the state in the `status` variable of the template file passed as the first argument. This could be: `operational`, `preliminary` or `na`.
+By reading the filename of the acquired files, we can know if there is data available at a certain hour and fill in the field `available` in the JSON file. The `status` of this data has to be defined by the lidar operator, filling the state in the `status` of the data variable of the template file passed as the first argument. This could be: `operational`, `preliminary` or `na`.
 
 
 ### Third Argument: Output JSON file folder
@@ -98,10 +98,31 @@ By reading the filename of the acquired files, we can know if there is data avai
 Path of the folder where the JSON files will be stored.
 
 ## Automatic rules applied for the JSON file generation
-About `data` object array: each of the values of the arrays `available` and `status` will be filled according to:
 
-* `available`: If the status of the site is `operational`, each hour field will be filled with the value of `true` if only a single file was acquired within the hour. Otherwise, it will be filled with `false`.
-* `status`: If the status of the site is `operational`, its values will also be filled with the string `operational`. If the status of the site is `closed`, their values will be `na`.
+The main task of this Phyton script is to fill the hourly fields of the `data` object array. Each of the hourly values of the arrays `available` and `status` will be filled according to the state of the station, following the rules shown below:
+
+If the station status is `"operational"`
+
+| Station status: `"operational"` |               |
+| ----------------------------- | -------------   |
+| `"available"`                 | `status`        |
+| `true`                        | `operational`   |
+| `false`                       | `na`            |
+
+If the station status is `"planned"`
+
+| Station status: `"planned"`   |               |
+| ----------------------------- | ------------- |
+| `"available"`                 | `"status"`    |
+| `true`                        | `operational` |
+| `false`                       | `preliminary` |
+
+If the station status is `"closed"`
+
+| Station status: `"closed"`    |               |
+| ----------------------------- | ------------- |
+| `"available"`                 | `"status"`    |
+| `false`                       | `na`          |
 
 ## Bulk Mode
 
