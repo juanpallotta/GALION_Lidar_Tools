@@ -114,8 +114,8 @@ If the station status is `"planned"`
 | Station status: `"planned"`   |                 |
 | ----------------------------- | --------------- |
 | `"available"`                 | `"status"`      |
-| `true`                        | `"operational"` |
-| `false`                       | `"preliminary"` |
+| `true`                        | `"preliminary"` |
+| `false`                       | `"na"`          |
 
 If the station status is `"closed"`
 
