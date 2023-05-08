@@ -103,26 +103,26 @@ The main task of this Phyton script is to fill the hourly fields of the `data` o
 
 If the station status is `"operational"`
 
-| Station status: `"operational"` |               |
-| ----------------------------- | -------------   |
-| `"available"`                 | `status`        |
-| `true`                        | `operational`   |
-| `false`                       | `na`            |
+| Station status: `"operational"` |                 |
+| --------------------------------|-----------------|
+| `"available"`                   | `"status"`      |
+| `true`                          | `"operational"` |
+| `false`                         | `"na"`          |
 
 If the station status is `"planned"`
 
-| Station status: `"planned"`   |               |
-| ----------------------------- | ------------- |
-| `"available"`                 | `"status"`    |
-| `true`                        | `operational` |
-| `false`                       | `preliminary` |
+| Station status: `"planned"`   |                 |
+| ----------------------------- | --------------- |
+| `"available"`                 | `"status"`      |
+| `true`                        | `"operational"` |
+| `false`                       | `"preliminary"` |
 
 If the station status is `"closed"`
 
 | Station status: `"closed"`    |               |
 | ----------------------------- | ------------- |
 | `"available"`                 | `"status"`    |
-| `false`                       | `na`          |
+| `false`                       | `"na"`        |
 
 ## Bulk Mode
 
