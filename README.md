@@ -138,10 +138,10 @@ If it's necessary the generation of many JSON files in a row, this repository co
       |->...
 ```
 
-The task of this script is to produce a list of paths where the lidar files are located and pass them to the Python script ```galion_auto_json_generator.sh```.
+The task of this script is to produce a list of folder paths where the lidar files are located and pass them to the Python script ```galion_auto_json_generator.sh```.
 The usage is:
 
 ```
 ./bulk_galion_auto_json_generator.py GALION_NET_SITENAME_TEMPLATE_free_key_word.json main_path_to_lidar_data path_to_output_folder
 ```
-
+The produced GALION-JSON files output are stored in the folder passed as third argument (`path_to_output_folder`).
