@@ -145,3 +145,4 @@ The usage is:
 ./bulk_galion_auto_json_generator.py GALION_NET_SITENAME_TEMPLATE_free_key_word.json main_path_to_lidar_data path_to_output_folder
 ```
 The produced GALION-JSON files output are stored in the folder passed as third argument (`path_to_output_folder`).
+

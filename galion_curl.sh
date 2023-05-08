@@ -1,6 +1,5 @@
 #!/bin/bash
-#
-#	galion_curl.sh -f ./JSON_files/CEILAPOZONE/GALION_LALINET_CEILAPOZONE_20050806.json
+#	./galion_curl.sh -f /home/juan/GALION_Lidar_Tools/JSON_OUT/GALION_LALINET_CEILAPOZONE_20190901.json
 #
 #	WARNING NEW VERSION and NEW SCRIPT NAME (galion_curl):
 #		you must now explicitly set uploaded file using a flag (galion_curl -f FILE.json)

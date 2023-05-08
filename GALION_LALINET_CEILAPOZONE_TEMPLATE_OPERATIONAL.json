@@ -176,7 +176,6 @@
         "url_file": [
           ""
         ],
-        "wigos": "12251",
         "wigos_name": "Relative attenuated backscatter",
         "observation_schedule": "NA",
         "observation_temporal_reporting_interval": "NA"
@@ -276,7 +275,6 @@
         "url_file": [
           ""
         ],
-        "wigos": "12159",
         "wigos_name": "Particle light backscatter coefficient",
         "application_area": "atmosphericCompositionForecasting",
         "observation_schedule": "NA",
@@ -377,7 +375,6 @@
         "url_file": [
           ""
         ],
-        "wigos": "12145",
         "wigos_name": "Particle light extinction coefficient",
         "application_area": "climateMonitoring;aeronauticalMeteorology;atmosphericCompositionForecasting;atmosphericCompositionMonitoring",
         "observation_schedule": "NA",
@@ -478,7 +475,6 @@
         "url_file": [
           ""
         ],
-        "wigos": "325",
         "wigos_name": "Aerosol optical depth TSP",
         "application_area": "climateMonitoring",
         "observation_schedule": "NA",
@@ -579,7 +575,6 @@
         "url_file": [
           ""
         ],
-        "wigos": "531",
         "wigos_name": "Cloud base height",
         "application_area": "aeronauticalMeteorology;globalNumericalWeatherPrediction;highResolutionNumericalWeatherPrediction;nowcasting",
         "observation_schedule": "NA",
@@ -680,7 +675,6 @@
         "url_file": [
           ""
         ],
-        "wigos": "532",
         "wigos_name": "Cloud top height",
         "application_area": "globalNumericalWeatherPrediction;highResolutionNumericalWeatherPrediction;nowcasting",
         "observation_schedule": "NA",
